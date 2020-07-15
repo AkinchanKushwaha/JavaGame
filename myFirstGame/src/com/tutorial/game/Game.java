@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.Random;
 
 public class Game extends Canvas implements Runnable{
 	
@@ -14,8 +15,24 @@ public class Game extends Canvas implements Runnable{
 	private Thread thread;
 	
 	private boolean running = false;
+	
+	private Random r;
+	
+	private Handler handler;
+	
+	
 	public Game() {
 		new window(WIDTH ,HEIGHT, "let's build a game!",this);
+		
+		handler = new Handler();
+		r = new Random();
+		
+		for(int i = 0 ; i<50 ; i++) {
+			handler.addObject(new Player(r.nextInt(WIDTH),r.nextInt(HEIGHT), ID.player));
+		}
+		
+		
+		
 	}
 	public synchronized void start() {
 		thread = new Thread(this);
@@ -56,7 +73,7 @@ public class Game extends Canvas implements Runnable{
 		int frames = 0;
 		while(running) {
 			long now = System.nanoTime();
-			delta +=(now = lastTime)/ns;
+			delta +=(now - lastTime)/ns;
 			lastTime = now;
 			while(delta>=1) {
 				tick();
@@ -75,7 +92,9 @@ public class Game extends Canvas implements Runnable{
 		stop();
 		
 	}
+	
 	private void tick() {
+		handler.tick();
 		
 	}
 	
@@ -88,6 +107,8 @@ public class Game extends Canvas implements Runnable{
 		Graphics g = bs.getDrawGraphics();
 		g.setColor(Color.black);
 		g.fillRect(0,0,WIDTH, HEIGHT);
+		
+		handler.render(g);
 		
 		g.dispose();
 		bs.show();	
