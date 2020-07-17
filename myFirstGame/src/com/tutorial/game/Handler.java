@@ -6,7 +6,11 @@ import java.util.LinkedList;
 public class Handler {
 	
 	LinkedList<GameObject> object = new LinkedList<GameObject>();
-	
+	/*
+	*A “tick” is just updating the game logic.
+
+	*Rendering is updating the stuff shown on screen.
+	*/
 	public void tick() {
 		for(int i = 0 ; i<object.size(); i++) {
 			GameObject tempObject = object.get(i);

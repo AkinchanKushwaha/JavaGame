@@ -1,6 +1,8 @@
 package com.tutorial.game;
 
 public enum ID {
-	player(),
+	Player(),
+	Player2(),
+	
 	Enemy();
 }
