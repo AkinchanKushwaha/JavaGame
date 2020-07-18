@@ -9,7 +9,6 @@ public class HUD {
 	public static int HEALTH = 100;
 	
 	public void tick() {
-		HEALTH --;
 		
 		HEALTH =Game.clamp(HEALTH, 0, 100);
 		
