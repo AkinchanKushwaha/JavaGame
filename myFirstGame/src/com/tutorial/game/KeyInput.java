@@ -60,7 +60,7 @@ public class KeyInput extends KeyAdapter {
 					tempObject.setVelX(0);
 				
 				
-				//vertical movement
+//				vertical movement
 //				if(!keyDown[0]) tempObject.setVelY(1);
 //				if(!keyDown[1]) tempObject.setVelY(1);
 				
